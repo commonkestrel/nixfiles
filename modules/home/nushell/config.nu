@@ -1,0 +1,2 @@
+alias z = zoxide
+fastfetch

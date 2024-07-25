@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports =
@@ -14,7 +14,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -81,44 +80,6 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.kestrel = {
-    isNormalUser = true;
-    description = "Kestrel";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      firefox
-      gparted
-      gimp
-      vlc
-      obs-studio
-      libreoffice-qt
-      hunspell
-      hunspellDicts.en_US
-      kdePackages.kate
-      vscode
-      fastfetch
-      spotify
-      rustc
-      cargo
-      rustfmt
-      rust-analyzer
-      go
-      jdk
-      slack
-      pdfsam-basic
-      fishPlugins.done
-      fishPlugins.fzf-fish
-      fishPlugins.forgit
-      fishPlugins.tide
-      fzf
-      fishPlugins.grc
-      grc
-      fira-code-nerdfont
-      discord
-      prismlauncher
-    ];
-  };
-
   # Install firefox.
 
   # Allow unfree packages
@@ -136,34 +97,6 @@
   #  wget
   ];
   
-  programs.steam.enable = true;
-
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-  };
-
-  programs.git = {
-    enable = true;
-    package = pkgs.gitFull;
-    config.credential.helper = "libsecret";
-  };
-
-  programs.fish.enable = true;
- 
-  programs.fish.shellAliases = {
-    gix = "git --git-dir=$HOME/nixfiles/ --work-tree=/etc/nixos/";
-  };
-
-  programs.bash = {
-    interactiveShellInit = ''
-      if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
-      then
-        shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
-        exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
-      fi
-    '';
-  };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
