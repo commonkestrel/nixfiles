@@ -79,16 +79,16 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  # Install firefox.
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   
-  # Include the `frc-nix` registry from team 3636
+  # Alias to check home-manager logs when the build fails
+  programs.bash.shellAliases = {
+    hmlog = "journalctl -xe --unit home-manager-kestrel.service";
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

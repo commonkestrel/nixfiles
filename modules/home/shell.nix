@@ -20,10 +20,19 @@
 	programs.fish.shellAliases = {
 	  # Git alias for tracking the NixOS configuration
       gix = "git --git-dir=$HOME/nixfiles/ --work-tree=/etc/nixos/";
+	  hmlog = "journalctl -xe --unit home-manager-kestrel.service";
 	};
 
 	programs.zoxide.enable = true;
 	programs.zoxide.enableNushellIntegration = true;
 	programs.fastfetch.enable = true;
+
+	home.packages = with pkgs; [
+      fishPlugins.done
+	  fishPlugins.fzf-fish
+	  fishPlugins.forgit
+	  fishPlugins.grc
+	  grc
+	];
   };
 }
