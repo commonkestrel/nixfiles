@@ -13,13 +13,17 @@
 	  configFile.source = ./nushell/config.nu;
 	};
     programs.fish.enable = true;
-    programs.fish.interactiveShellInit = ''
-      fastfetch
+	programs.fish.interactiveShellInit = ''
+	  if begin set -q VSCODE_INTEGRATED_SHELL; and test -e shell.nix; end;
+	    set --erase VSCODE_INTEGRATED_SHELL
+	    exec nix-shell --run 'exec fish'
+	  else
+	  end
 	'';
-
 	programs.fish.shellAliases = {
 	  # Git alias for tracking the NixOS configuration
       gix = "git --git-dir=$HOME/nixfiles/ --work-tree=/etc/nixos/";
+	  nix-shell = "nix-shell --run 'exec fish'";
 	  hmlog = "journalctl -xe --unit home-manager-kestrel.service";
 	};
 

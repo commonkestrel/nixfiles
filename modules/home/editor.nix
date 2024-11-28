@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   programs.vscode = {
@@ -8,7 +8,6 @@
 
 	extensions = with pkgs.vscode-extensions; [
 	  # Language extensions
-      ms-vscode.cpptools-extension-pack
 	  attilabuti.brainfuck-syntax
 	  golang.go
 	  ecmel.vscode-html-css
@@ -32,7 +31,10 @@
 
 	  # Rust
 	  tamasfe.even-better-toml
-      rust-lang.rust-analyzer
+
+	  # C++
+	  ms-vscode.cmake-tools
+	  ms-vscode.cpptools
 
       # Python
 	  ms-python.python
@@ -81,8 +83,16 @@
 
 	  # Themes
 	  equinusocio.vsc-material-theme-icons
+	] ++ [
+      pkgs.wpilib.vscode-wpilib
 	] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
+	    name = "rust-analyzer";
+		publisher = "rust-lang";
+        version = "0.4.2113";
+		hash = "sha256-pnFZpOGEVPys6aIspUgylc7K4eeL1HC8PzyfP222SZQ=";
+	  }
+	  {
         name = "pinkpanda-dark-theme";
 		publisher = "TheHelpfulTipper";
 		version = "0.2.1";
@@ -100,6 +110,18 @@
 		version = "3.3.3";
 		hash = "sha256-d8kwQVoG/MOujmvMaX6Y0wl85L2PNdv2EnqTZKo8pGk=";
 	  }
+	  {
+        name = "nix-env-selector";
+		publisher = "arrterian";
+		version = "1.0.11";
+		hash = "sha256-dK0aIH8tkG/9UGblNO0WwxJABBEEKEy4nSmIwdDpf4Q=";
+	  }
+	  {
+        name = "markdown-table-prettify";
+		publisher = "darkriszty";
+		version = "3.6.0";
+		hash = "sha256-FZTiNGSY+8xk3DJsTKQu4AHy1UFvg0gbrzPpjqRlECI=p";
+	  }
 	];
 
 	userSettings = {
@@ -111,8 +133,10 @@
 	  "editor.guides.indentation" = false;
 	  "editor.inlineSuggest.enabled" = true;
 	  "terminal.integrated.defaultProfile.windows" = "fish";
-	  "git.autoFetch" = true;
+	  "git.autofetch" = true;
 	  "git.openRepositoryInParentFolders" = "never";
+	  "git.enableSmartCommit" = true;
+	  "git.confirmSync" = false;
 	  "editor.fontLigatures" = true;
 	  "editor.guides.bracketPairs" = false;
 	  "files.refactoring.autoSave" = true;
@@ -123,6 +147,10 @@
 	  "python.languageServer" = "Pylance";
 	  "css.hover.references" = false;
 	  "css.hover.documentation" = false;
+	  "terminal.integrated.env.linux" = {
+        "VSCODE_INTEGRATED_SHELL" = "true";
+	  };
+	  "rust-analyzer.server.path" = "/etc/profiles/per-user/kestrel/bin/rust-analyzer";
 	};
   };
 }

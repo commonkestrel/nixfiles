@@ -10,6 +10,7 @@
       extraGroups = [
         "networkManager"
 	    "wheel"
+		"uinput"
       ];
     };   
 	  

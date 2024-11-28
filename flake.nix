@@ -10,7 +10,7 @@
 	};
 
     frc-nix = {
-	  url = "github:FRC3636/frc-nix";
+	  url = "github:FRC3636/frc-nix/update-wpilib";
 	  inputs.nixpkgs.follows = "nixpkgs";
     };
   };

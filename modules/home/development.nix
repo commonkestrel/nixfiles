@@ -13,27 +13,42 @@
 	programs.direnv.enable = true;
 
 	home.packages = with pkgs; [
-      rustc
-	  cargo
-	  rustfmt
-	  clippy
+	  virtualbox
+      rustup 
+	  cargo-valgrind
+	  cargo-tauri
+	  cargo-binutils
+	  trunk
 	  go
-	  jdk
+	  gleam
+	  erlang
+	  rebar3
+	  jdk17
+	  gradle
 	  nodejs_22
 	  typescript
 	  nodePackages.webpack
 	  nodePackages.webpack-cli
 	  nixfmt-classic
-	  python3
+	  python312
+	  python312Packages.pip
 	  gcc
+	  typst
+	  typst-lsp
 	  avrdude
 	  avrdudess
 	  ravedude
 	  arduino
-	  arduino-ide
 	  zig
+	  valgrind
 	  verilog
-	  logisim-evolution
+	  asciinema
+	  nss
+	  qemu
+	  dosbox
+	  nasm
+	  gnumake
+	  wireshark
 	];
   };
 }
