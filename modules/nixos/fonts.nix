@@ -3,9 +3,11 @@
 {
   config = {
     fonts.packages = with pkgs; [
+	  fira-code
       noto-fonts
 	  jost
-	  (nerdfonts.override { fonts = [ "FiraCode" ]; })
+	  nerd-fonts._0xproto
+	  nerd-fonts.fira-code
 	];
   };
 }

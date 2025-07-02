@@ -1,5 +1,5 @@
 {
-  description = "My Nix/NixOS configuration";
+  description = "Kestrel's Nix/NixOS configuration";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -10,7 +10,7 @@
 	};
 
     frc-nix = {
-	  url = "github:FRC3636/frc-nix/update-wpilib";
+	  url = "github:taciturnaxolotl/frc-nix/a6d618d";
 	  inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -45,9 +45,9 @@
 		};
 	in {
       nixosConfigurations = {
-        nixbook = host {
+        "kestrels-laptop" = host {
           system = "x86_64-linux";
-		  hostName = "nixbook";
+		  hostName = "kestrels-laptop";
 		  modules = [ ./hosts/nixbook/configuration.nix ];
 		};
 	  };

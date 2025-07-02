@@ -25,6 +25,7 @@
       gix = "git --git-dir=$HOME/nixfiles/ --work-tree=/etc/nixos/";
 	  nix-shell = "nix-shell --run 'exec fish'";
 	  hmlog = "journalctl -xe --unit home-manager-kestrel.service";
+	  rails = "gem exec rails";
 	};
 
 	programs.zoxide.enable = true;

@@ -21,13 +21,16 @@
 	notepad-next
 	teams-for-linux
 	thunderbird
+	signal-desktop
 	zoom-us
 	audacity
     blender
 	webcamoid
 	kdePackages.kdeplasma-addons
 	pinta
-	figma-linux
+	libresprite
+	pulseview
+	sigrok-firmware-fx2lafw
 	hunspell
 	hunspellDicts.en_US 
   ];

@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+	  ./hibernate.nix
     ];
 
   # Bootloader.
@@ -17,6 +18,8 @@
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+
+  hardware.opentabletdriver.enable = true;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -43,6 +46,20 @@
     LC_TIME = "en_US.UTF-8";
   };
 
+  services.avahi = {
+    enable = true;
+	nssmdns4 = true;
+	openFirewall = true;
+	publish = {
+	  enable = true;
+	  userServices = true;
+	  addresses = true;
+	};
+  };
+
+  # Disable KVM to fix VirtualBox
+  boot.kernelParams = [ "kvm.enable_virt_at_load=0" ];
+
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
@@ -50,7 +67,7 @@
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
-
+  
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -61,7 +78,7 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;

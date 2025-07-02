@@ -6,7 +6,8 @@
 	  advantagescope
 	  pathplanner
 	  choreo
-	  wpilib.wpilib-utility
+	  # wpilib.buildBinTool
+	  # wpilib.buildJavaTool
 	  wpilib.roborioteamnumbersetter
 	  wpilib.sysid
       wpilib.smartdashboard
